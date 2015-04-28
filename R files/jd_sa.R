@@ -16,7 +16,7 @@ sa_x13<-function(s, method="RSA4c", details=NULL){
 	if (! is.null(details)){
 		dspec<-.jcall(spec, "Lec/tstoolkit/information/InformationSet;", "write", FALSE)
 		.jcall(dspec, "Z", "update", details)
-		spec<-.jnew("ec/satoolkit/tramoseats/X13Specification")
+		spec<-.jnew("ec/satoolkit/x13/X13Specification")
 		.jcall(spec, "Z", "read",dspec)
 	}
 	.jcall(jd_x13, "Lec/tstoolkit/algorithm/CompositeResults;", "process", jd_s, spec)
