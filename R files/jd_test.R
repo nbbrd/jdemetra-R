@@ -64,3 +64,7 @@ proc_numeric(tramoseats_rslts2, "likelihood.bicc")
 proc_str(x13_rslts, "arima")
 proc_str(tramoseats_rslts, "arima")
 proc_str(tramoseats_rslts2, "arima")
+
+sa0y<-ts_aggregate(sa0, 1)
+sa0y
+

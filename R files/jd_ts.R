@@ -44,3 +44,12 @@ ts_airline<-function(len){
 	ts(data, start=c(2000, 1), frequency=12)
 }
 
+ts_aggregate<-function(s, newfreq, mode=1){
+	jd_s<-ts_r2jd(s)
+	jd_freq<-.jcall("ec/tstoolkit/timeseries/simplets/TsFrequency", "Lec/tstoolkit/timeseries/simplets/TsFrequency;", "valueOf", as.integer(newfreq))
+	jd_mode<-.jcall("ec/tstoolkit/timeseries/TsAggregationType", "Lec/tstoolkit/timeseries/TsAggregationType;", "valueOf", as.integer(mode))
+	jd_agg<-.jcall(jd_s, "Lec/tstoolkit/timeseries/simplets/TsData;", "changeFrequency", jd_freq, jd_mode, TRUE)
+	ts_jd2r(jd_agg)
+}
+
+
