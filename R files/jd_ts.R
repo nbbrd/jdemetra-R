@@ -1,7 +1,8 @@
+
 period_r2jd<-function(s){
 	freq<-s[1]
 	jd_freq<-.jcall("ec/tstoolkit/timeseries/simplets/TsFrequency", "Lec/tstoolkit/timeseries/simplets/TsFrequency;", "valueOf", as.integer(freq))
-	.jnew("ec/tstoolkit/timeseries/simplets/TsPeriod", jd_freq, as.integer(start[2]), as.integer(start[3]-1))
+	.jnew("ec/tstoolkit/timeseries/simplets/TsPeriod", jd_freq, as.integer(s[2]), as.integer(s[3]-1))
 }
 
 period_jd2r<-function(jd_p){
@@ -10,6 +11,22 @@ period_jd2r<-function(jd_p){
 	year<-.jcall(jd_p, "I", "getYear")
 	position<-.jcall(jd_p, "I", "getPosition")
 	c(frequency, year, position+1)
+}
+
+domain_r2jd<-function(s){
+  freq<-s[1]
+  jd_freq<-.jcall("ec/tstoolkit/timeseries/simplets/TsFrequency", "Lec/tstoolkit/timeseries/simplets/TsFrequency;", "valueOf", as.integer(freq))
+  .jnew("ec/tstoolkit/timeseries/simplets/TsDomain", jd_freq, as.integer(s[2]), as.integer(s[3]-1), as.integer(s[4]))
+}
+
+domain_jd2r<-function(jd_d){
+  jd_start<-.jcall(jd_d, "Lec/tstoolkit/timeseries/simplets/TsPeriod;", "getStart")
+  jd_freq<-.jcall(jd_start, "Lec/tstoolkit/timeseries/simplets/TsFrequency;", "getFrequency")
+  frequency<-.jcall(jd_freq, "I", "intValue")
+  year<-.jcall(jd_start, "I", "getYear")
+  position<-.jcall(jd_start, "I", "getPosition")
+  len<-.jcall(jd_d, "I", "getLength")
+  c(frequency, year, position+1, len)
 }
 
 ts_r2jd<-function(s){
@@ -44,10 +61,10 @@ ts_airline<-function(len){
 	ts(data, start=c(2000, 1), frequency=12)
 }
 
-ts_aggregate<-function(s, newfreq, mode=1){
+ts_aggregate<-function(s, newfreq, mode="Sum"){
 	jd_s<-ts_r2jd(s)
 	jd_freq<-.jcall("ec/tstoolkit/timeseries/simplets/TsFrequency", "Lec/tstoolkit/timeseries/simplets/TsFrequency;", "valueOf", as.integer(newfreq))
-	jd_mode<-.jcall("ec/tstoolkit/timeseries/TsAggregationType", "Lec/tstoolkit/timeseries/TsAggregationType;", "valueOf", as.integer(mode))
+	jd_mode<-.jcall("ec/tstoolkit/timeseries/TsAggregationType", "Lec/tstoolkit/timeseries/TsAggregationType;", "valueOf", mode)
 	jd_agg<-.jcall(jd_s, "Lec/tstoolkit/timeseries/simplets/TsData;", "changeFrequency", jd_freq, jd_mode, TRUE)
 	ts_jd2r(jd_agg)
 }

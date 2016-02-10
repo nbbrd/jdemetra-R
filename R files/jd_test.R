@@ -1,8 +1,11 @@
 source("./jd_init.R")
 source("./jd_ts.R")
+source("./jd_calendars.R")
+source("./jd_regression.R")
 source("./jd_sa.R")
 source("./jd_rslts.R")
 source("./jd_spec.R")
+source("./jd_cholette.R")
 
 # usual R time series
 data<-read.table("../Data/xm.txt")
@@ -65,6 +68,24 @@ proc_str(x13_rslts, "arima")
 proc_str(tramoseats_rslts, "arima")
 proc_str(tramoseats_rslts2, "arima")
 
-sa0y<-ts_aggregate(sa0, 1)
-sa0y
+sy<-ts_aggregate(s, 1)
+sy
 
+sa0c<-jd_cholette(sa0, sy, 1, 1)
+sa0cc<-jd_cholette(sa0, sy, 1, 0)
+sa0ccc<-jd_denton(sa0, sy)
+sa0cccc<-jd_denton(sa0, sy, mul = FALSE, d=2)
+ts.union(sa0, sa0c, sa0cc, sa0ccc, sa0cccc)
+
+#calendar
+jdc<-jd_calendar()
+# 1 May
+jd_addFixedDay(jdc, 5, 1)
+# 21 July
+jd_addFixedDay(jdc, 7, 21)
+#Ascension
+jd_addEasterRelatedDay(jdc, 39)
+#White Monday
+jd_addEasterRelatedDay(jdc, 50)
+jd_dom<-domain_r2jd(c(12,1980,1, 120))
+jd_calendarData(jdc, jd_dom)

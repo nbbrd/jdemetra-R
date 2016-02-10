@@ -1,9 +1,22 @@
-jd_cholette<-.jnew("ec.benchmarking.simplets.TsCholette")
+source("./jd_ts.R")
 
-cholette<-function(s, t, rho=-.9991, lambda=1){
-	jd_s<-ts_r2jd(s)
+
+jd_cholette<-function(s, t, rho=1, lambda=1){
+  monitor<-.jnew("ec.benchmarking.simplets.TsCholette")
+  jd_s<-ts_r2jd(s)
 	jd_t<-ts_r2jd(t)
-	.jcall(jd_cholette, "V", "setRho", as.double(rho))
-	.jcall(jd_cholette, "V", "setLambda", as.double(lambda))
-	ts_jd2r(.jcall(jd_cholette, "Lec/tstoolkit/timeseries/simplets/TsData;", "benchmark",jd_s, jd_t))
+	.jcall(monitor, "V", "setRho", as.double(rho))
+	.jcall(monitor, "V", "setLambda", as.double(lambda))
+	ts_jd2r(.jcall(monitor, "Lec/tstoolkit/timeseries/simplets/TsData;", "benchmark",jd_s, jd_t))
 }
+
+jd_denton<-function(s, t, mul=TRUE, modified=TRUE, d=1,  aggregation="sum"){
+  monitor<-.jnew("ec.benchmarking.simplets.TsDenton2")
+  jd_s<-ts_r2jd(s)
+  jd_t<-ts_r2jd(t)
+  .jcall(monitor, "V", "setDifferencingOrder", as.integer(d))
+  .jcall(monitor, "V", "setMultiplicative", as.logical(mul))
+  .jcall(monitor, "V", "setModified", as.logical(modified))
+  ts_jd2r(.jcall(monitor, "Lec/tstoolkit/timeseries/simplets/TsData;", "benchmark",jd_s, jd_t))
+}
+

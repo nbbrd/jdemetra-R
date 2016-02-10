@@ -1,3 +1,9 @@
+source("./jd_ts.R")
+
+jd_tramoseats<-.jnew("ec/satoolkit/algorithm/implementation/TramoSeatsProcessingFactory")
+jd_x13<-.jnew("ec/satoolkit/algorithm/implementation/X13ProcessingFactory")
+jd_stm<-.jnew("ec/satoolkit/algorithm/implementation/StmProcessingFactory")
+
 sa_tramoseats<-function(s, method="RSAfull", details=NULL){
 	jd_s<-ts_r2jd(s)
 	spec<-.jcall("ec/satoolkit/tramoseats/TramoSeatsSpecification","Lec/satoolkit/tramoseats/TramoSeatsSpecification;", "fromString", method)
