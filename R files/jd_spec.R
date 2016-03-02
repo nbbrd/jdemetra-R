@@ -20,10 +20,15 @@ spec_numeric<-function(spec, name, obj){
 	.jcall(spec, "Z", "set", names, .jcast(j_num, "java/lang/Object"))
 }
 
-spec_fixedparams<-function(spec, name, data){
-	names<-.jcall("ec/tstoolkit/information/InformationSet", "[S", "split", name)
-	j_params<-jd_params(data, jd_pfixed)
-	.jcall(spec, "Z", "set", names, .jcast(j_params, "java/lang/Object"))
+spec_numerics<-function(spec, name, obj){
+  names<-.jcall("ec/tstoolkit/information/InformationSet", "[S", "split", name)
+  .jcall(spec, "Z", "set", names, .jarray(obj))
+}
+
+spec_numerics<-function(spec, name, obj){
+  names<-.jcall("ec/tstoolkit/information/InformationSet", "[S", "split", name)
+  j_nums<-.jarray(obj)
+  .jcall(spec, "Z", "set", names, .jcast(j_nums, "java/lang/Object"))
 }
 
 spec_initialparams<-function(spec, name, data){
@@ -43,3 +48,10 @@ spec_str<-function(spec, name, str){
 	jstr=.jnew("java/lang/String", as.character(str))      
       .jcall(spec, "Z", "set", names, .jcast(jstr, "java/lang/Object"))
 }
+
+spec_strs<-function(spec, name, str){
+  names<-.jcall("ec/tstoolkit/information/InformationSet", "[S", "split", name)
+  jstr=.jarray(str)      
+  .jcall(spec, "Z", "set", names, .jcast(jstr, "java/lang/Object"))
+}
+

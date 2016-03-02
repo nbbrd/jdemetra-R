@@ -16,22 +16,23 @@ jd_addEasterRelatedDay<-function(jdcal, offset, julianEaster=FALSE){
   .jcall(jdcal, "Z", "add", .jcast(fday, "ec/tstoolkit/timeseries/calendars/ISpecialDay"))
 }
 
-jd_calendarData<-function(jcal, jdom){
+jd_calendarData<-function(jcal, dom, type="td"){
+  jdom=domain_r2jd(dom)
   if (.jinstanceof(jcal, "ec/tstoolkit/timeseries/calendars/NationalCalendarProvider"))
     cprovider=jcal
   else
     cprovider<-.jnew("ec/tstoolkit/timeseries/calendars/NationalCalendarProvider", jcal)
-  jd_var<-.jnew("ec/tstoolkit/timeseries/regression/GregorianCalendarVariables",.jcast(cprovider, "ec/tstoolkit/timeseries/calendars/IGregorianCalendarProvider"), jd_td)
+  if (type == "td")
+    jd_type=jd_td
+  else if (type == "wd")
+    jd_type=jd_wd
+
+  
+  jd_var<-.jnew("ec/tstoolkit/timeseries/regression/GregorianCalendarVariables",.jcast(cprovider, "ec/tstoolkit/timeseries/calendars/IGregorianCalendarProvider"), jd_type)
   jd_m<-.jcall("ec/tstoolkit/timeseries/regression/RegressionUtilities", "Lec/tstoolkit/maths/matrices/Matrix;",
          "matrix", .jcast(jd_var, "ec/tstoolkit/timeseries/regression/ITsVariable"), jdom)
-  matrix_jd2r(jd_m)
-}
-
-jd_calendarData2<-function(jcal, jdom){
-  jd_var<-.jnew("ec/tstoolkit/timeseries/regression/GregorianCalendarVariables",.jcast(jcal, "ec/tstoolkit/timeseries/calendars/IGregorianCalendarProvider"), jd_td)
-  jd_m<-.jcall("ec/tstoolkit/timeseries/regression/RegressionUtilities", "Lec/tstoolkit/maths/matrices/Matrix;",
-               "matrix", .jcast(jd_var, "ec/tstoolkit/timeseries/regression/ITsVariable"), jdom)
-  matrix_jd2r(jd_m)
+  data<-matrix_jd2r(jd_m)
+  ts(data,start=dom[2:3], frequency=dom[1])
 }
 
 # ProcessingContext.getActiveContext().getGregorianCalendars().set("belgium", ncal);

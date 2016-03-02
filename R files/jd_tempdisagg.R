@@ -43,15 +43,15 @@ jd_td<-function(formula, model="Ar1", conversion="Sum", zeroinit=FALSE, truncate
     jp<-.jnew("ec/tstoolkit/Parameter",as.double(truncated.rho), jd_pfixed)
     .jcall(monitor, "V", "setParameter", jp)
   }
+  vars<-.jnew("ec.tstoolkit.timeseries.regression.TsVariableList");
   if (hasX){
-      vars<-.jnew("ec.tstoolkit.timeseries.regression.TsVariableList");
       xvar<-jd_tsvar(get(X.series.names[1], envir=environment(X.formula)), X.series.names[1])
       .jcall(vars, "V", "add", .jcast(xvar, "ec/tstoolkit/timeseries/regression/ITsVariable"))
       .jcall(monitor, "Z", "process", jd_y, vars)
   }else{
     jd_freq<-.jcall("ec/tstoolkit/timeseries/simplets/TsFrequency", "Lec/tstoolkit/timeseries/simplets/TsFrequency;", "valueOf", as.integer(to))
-    .jcall(monitor, "Z", "setDefaultFrequency", jd_freq)
-    .jcall(monitor, "Z", "process", jd_y, .jcast("ec/tstoolkit/timseries/simplets/regression/TsVariableList", .jnull()))
+    .jcall(monitor, "V", "setDefaultFrequency", jd_freq)
+    .jcall(monitor, "Z", "process", jd_y, vars)
   }
   
   sm<-.jcall(monitor, "Lec/tstoolkit/timeseries/simplets/TsData;", "getDisaggregatedSeries")
