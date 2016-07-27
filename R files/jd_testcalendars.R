@@ -6,10 +6,10 @@ source("./jd_sa.R")
 
 #calendar
 jdc<-jd_calendar()
-# 1 May
-jd_addFixedDay(jdc, 5, 1)
+# 1 May , till today
+jd_addFixedDay(jdc, 5, 1, end=as.Date(Sys.Date()))
 # 21 July
-jd_addFixedDay(jdc, 7, 21)
+jd_addFixedDay(jdc, 7, 21, start=as.Date("1980-12-31"))
 #Ascension
 jd_addEasterRelatedDay(jdc, 39)
 #White Monday

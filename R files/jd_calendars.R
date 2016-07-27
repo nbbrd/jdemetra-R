@@ -1,19 +1,49 @@
 source("./jd_regression.R")
 
+jd_BEG<-.jfield("ec/tstoolkit/timeseries/Day", "Lec/tstoolkit/timeseries/Day;", "BEG")
+jd_END<-.jfield("ec/tstoolkit/timeseries/Day", "Lec/tstoolkit/timeseries/Day;", "END")
+
 jd_calendar<-function(julianEaster=FALSE){
   .jnew("ec/tstoolkit/timeseries/calendars/NationalCalendar", as.logical(TRUE), as.logical(julianEaster))
 }
 
-jd_addFixedDay<-function(jdcal, month, day){
-  jdmonth<-month_r2jd(month)
-  fday<-.jnew("ec/tstoolkit/timeseries/calendars/FixedDay", as.integer(day-1), jdmonth)
-  .jcall(jdcal, "Z", "add", .jcast(fday, "ec/tstoolkit/timeseries/calendars/ISpecialDay"))
+jd_day<-function(day){
+  .jnew("ec/tstoolkit/timeseries/Day", as.integer(day))
 }
 
-jd_addEasterRelatedDay<-function(jdcal, offset, julianEaster=FALSE){
+jd_validityperiod<-function(start, end){
+  validity<-.jnew("ec/tstoolkit/timeseries/ValidityPeriod")
+  if (! is.null(start)){
+    .jcall(validity, "V", "setStart", jd_day(start))
+  }else{
+    .jcall(validity, "V", "setStart", jd_BEG)
+  }
+  if (! is.null(end)){
+    .jcall(validity, "V", "setEnd", jd_day(end))
+  }else{
+    .jcall(validity, "V", "setEnd", jd_END)
+  }
+  return(validity)
+}
+
+jd_addFixedDay<-function(jdcal, month, day, start=NULL, end=NULL){
+  jdmonth<-month_r2jd(month)
+  fday<-.jnew("ec/tstoolkit/timeseries/calendars/FixedDay", as.integer(day-1), jdmonth)
+  devent<-.jnew("ec/tstoolkit/timeseries/calendars/SpecialDayEvent", .jcast(fday, "ec/tstoolkit/timeseries/calendars/ISpecialDay"))
+  if ( ! (is.null(start) && is.null(end))){
+    .jcall(devent, "V", "setValidityPeriod", jd_validityperiod(start, end))
+  }
+  .jcall(jdcal, "Z", "add", devent)
+}
+
+jd_addEasterRelatedDay<-function(jdcal, offset, start=NULL, end=NULL, julianEaster=FALSE){
   
   fday<-.jnew("ec/tstoolkit/timeseries/calendars/EasterRelatedDay", as.integer(offset), as.logical(julianEaster))
-  .jcall(jdcal, "Z", "add", .jcast(fday, "ec/tstoolkit/timeseries/calendars/ISpecialDay"))
+  devent<-.jnew("ec/tstoolkit/timeseries/calendars/SpecialDayEvent", .jcast(fday, "ec/tstoolkit/timeseries/calendars/ISpecialDay"))
+  if ( ! (is.null(start) && is.null(end))){
+    .jcall(devent, "V", "setValidityPeriod", jd_validityperiod(start, end))
+  }
+  .jcall(jdcal, "Z", "add", .jcast(devent, "ec/tstoolkit/timeseries/calendars/SpecialDayEvent"))
 }
 
 jd_calendarData<-function(jcal, dom, type="td"){
