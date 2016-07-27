@@ -3,6 +3,7 @@ source("./jd_ts.R")
 source("./jd_calendars.R")
 source("./jd_regression.R")
 source("./jd_sa.R")
+source("./jd_sa_advanced.R")
 source("./jd_rslts.R")
 source("./jd_spec.R")
 source("./jd_cholette.R")
@@ -27,8 +28,11 @@ spec_bool(spec, "tramo.automdl.enabled", FALSE)
 spec_fixedparams(spec, "tramo.arima.btheta", -.8)
 spec_nparams(spec, "tramo.arima.phi", 2)
 spec_bool(spec, "tramo.regression.calendar.td.auto", TRUE)
+spec_strs(spec, "tramo.regression.outliers", c("LS.2005-12-01.f"))
+
 # execute TramoSeats on the series s, using the "RSA4" specification modified by the given spec details (see above)
 tramoseats_rslts2=sa_tramoseats(s,"RSA4",spec)
+proc_desc(tramoseats_rslts2, "regression.description")
 
 # retrieve the seasonally adjusted series
 sa0<-proc_ts(x13_rslts, "sa")
@@ -76,3 +80,32 @@ sa0cc<-jd_cholette(sa0, sy, 1, 0)
 sa0ccc<-jd_denton(sa0, sy)
 sa0cccc<-jd_denton(sa0, sy, mul = FALSE, d=2)
 ts.union(sa0, sa0c, sa0cc, sa0ccc, sa0cccc)
+
+# regarima models
+tsmodel<-(proc_regarima(tramoseats_rslts))
+x13model<-(proc_regarima(x13_rslts))
+           
+# forecasts tests
+# The returned values are: mean, expected mean, mean squared error, pvalue of mean test (with distribution)
+# options: out-of-sample/in-sample, number of forecasts  
+proc_forecasting(tsmodel)
+proc_forecasting(x13model)
+
+proc_forecasting(tsmodel, outofsample = FALSE)
+proc_forecasting(x13model, outofsample = FALSE)
+
+proc_forecasting(tsmodel, nfcasts = 36)
+proc_forecasting(x13model, nfcasts = 36)
+
+proc_forecasting(tsmodel, FALSE, 36)
+proc_forecasting(x13model, FALSE, 36)
+
+# Retrieve the outliers 
+# if all, estimated and pre-specifed outliers are returned
+# if fixed, all outliers are fixed (otherwise, only the pre-specified) 
+# Default: all=TRUE, fixed=TRUE
+proc_outliers(preprocessing = proc_preprocessing(tramoseats_rslts2))
+proc_outliers(preprocessing = proc_preprocessing(tramoseats_rslts2), fixed=FALSE)
+proc_outliers(preprocessing = proc_preprocessing(tramoseats_rslts2), all=FALSE)
+proc_outliers(preprocessing = proc_preprocessing(tramoseats_rslts2), all=FALSE, fixed = FALSE)
+
