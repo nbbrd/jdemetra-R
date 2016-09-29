@@ -44,7 +44,7 @@ spec_fixedparams<-function(spec, name, data){
 
 spec_nparams<-function(spec, name, data){
   names<-.jcall("ec/tstoolkit/information/InformationSet", "[S", "split", name)
-  j_params<-jd_params(array(0, as.integer(data)), jd_pundefined)
+  j_params<-jd_params(array(0, dim=data), jd_pundefined)
   .jcall(spec, "Z", "set", names, .jcast(j_params, "java/lang/Object"))
 }
 
