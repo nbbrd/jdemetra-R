@@ -21,11 +21,14 @@ jd_wd<-.jfield("ec/tstoolkit/timeseries/calendars/TradingDaysType","Lec/tstoolki
 jd_params<-function(data, type){
 	x<-list()
 	len<-length(data)
-      for (i in 1:len){
-            z<-as.double(data[i])
-		x[[i]]<-.jnew("ec/tstoolkit/Parameter",z, type)
-	}
-	.jarray(x)
+	pclass<-J("java/lang/Class", "forName", "ec.tstoolkit.Parameter",TRUE,.jclassLoader())
+	pobjs<-.jcall("java/lang/reflect/Array", "Ljava/lang/Object;", "newInstance", pclass, as.integer(len))
+  for (i in 1:len){
+      z<-as.double(data[i])
+	    pobj<-.jnew("ec/tstoolkit/Parameter",z, type)
+      .jcall("java/lang/reflect/Array", "V", "set", .jcast(pobjs, "java/lang/Object"), as.integer(i-1), .jcast(pobj, "java/lang/Object"))
+  }
+	pobjs
 }
 
 jd_january<-.jfield("ec/tstoolkit/timeseries/Month","Lec/tstoolkit/timeseries/Month;","January")
