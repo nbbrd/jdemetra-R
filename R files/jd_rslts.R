@@ -1,51 +1,65 @@
-proc_ts<-function(rslt, name){
-  clobj<-.jcall("java/lang/Class", "Ljava/lang/Class;", "forName", "java.lang.Object")
-  s<-.jcall(rslt, "Ljava/lang/Object;", "getData", name, clobj)
-  ts_jd2r(s)
-}
-
 proc_numeric<-function(rslt, name){
   s<-.jcall(rslt, "Ljava/lang/Object;", "getData", name, jd_clobj)
-  .jcall(s, "D", "doubleValue")
+  if (!is.jnull(s))
+    .jcall(s, "D", "doubleValue")
+  else
+     return (NaN)
 }
 
 proc_vector<-function(rslt, name){
   s<-.jcall(rslt, "Ljava/lang/Object;", "getData", name, jd_clobj)
+  
+  if (is.jnull(s))
+    return(NULL)
   .jevalArray(s)
 }
 
 proc_int<-function(rslt, name){
   s<-.jcall(rslt, "Ljava/lang/Object;", "getData", name, jd_clobj)
+  if (is.jnull(s))
+    return(-1)
   .jcall(s, "I", "intValue")
 }
 
 proc_bool<-function(rslt, name){
   s<-.jcall(rslt, "Ljava/lang/Object;", "getData", name, jd_clobj)
+  if (is.jnull(s))
+    return(FALSE)
   .jcall(s, "Z", "booleanValue")
 }
 
 proc_ts<-function(rslt, name){
   s<-.jcall(rslt, "Ljava/lang/Object;", "getData", name, jd_clobj)
+  if (is.jnull(s))
+    return (NULL)
   ts_jd2r(s)
 }
 
 proc_period<-function(rslt, name){
   s<-.jcall(rslt, "Ljava/lang/Object;", "getData", name, jd_clobj)
+  if (is.jnull(s))
+    return(NULL)
   period_jd2r(s)
 }
 
 proc_str<-function(rslt, name){
   s<-.jcall(rslt, "Ljava/lang/Object;", "getData", name, jd_clobj)
+  if (is.jnull(s))
+    return(NULL)
   .jcall(s, "S", "toString")
 }
 
 proc_desc<-function(rslt, name){
   s<-.jcall(rslt, "Ljava/lang/Object;", "getData", name, jd_clobj)
+  if (is.jnull(s))
+    return(NULL)
   .jevalArray(s)
 }
 
 proc_test<-function(rslt, name){
   s<-.jcall(rslt, "Ljava/lang/Object;", "getData", name, jd_clobj)
+  if (is.jnull(s))
+    return(NULL)
   desc<-.jfield(s, "S", "description")
   val<-.jfield(s, "D", "value")
   pval<-.jfield(s, "D", "pvalue")
@@ -54,13 +68,10 @@ proc_test<-function(rslt, name){
   all
 }
 
-proc_numeric<-function(rslt, name){
-  s<-.jcall(rslt, "Ljava/lang/Object;", "getData", name, jd_clobj)
-  .jcall(s, "D", "doubleValue")
-}
-
 proc_parameter<-function(rslt, name){
   s<-.jcall(rslt, "Ljava/lang/Object;", "getData", name, jd_clobj)
+  if (is.jnull(s))
+    return(NULL)
   val<-.jcall(s, "D", "getValue")
   e<-.jcall(s, "D", "getStde")
   c(val, e)
@@ -68,6 +79,8 @@ proc_parameter<-function(rslt, name){
 
 proc_parameters<-function(rslt, name){
   jd_p<-.jcall(rslt, "Ljava/lang/Object;", "getData", name, jd_clobj)
+  if (is.jnull(jd_p))
+    return(NULL)
   p<-.jcastToArray(jd_p)
   len<-length(p)
   all<-array(0, dim=c(len,2))
@@ -80,6 +93,8 @@ proc_parameters<-function(rslt, name){
 
 proc_reg<-function(rslt, name){
   s<-.jcall(rslt, "Ljava/lang/Object;", "getData", name, jd_clobj)
+  if (is.jnull(s))
+    return(NULL)
   desc<-.jfield(s, "S", "description")
   val<-.jfield(s, "D", "coefficient")
   e<-.jfield(s, "D", "stdError")
@@ -90,6 +105,8 @@ proc_reg<-function(rslt, name){
 
 proc_matrix<-function(rslt, name){
   s<-.jcall(rslt, "Ljava/lang/Object;", "getData", name, jd_clobj)
+  if (is.jnull(s))
+    return(NULL)
   nr<-.jcall(s, "I", "getRowsCount")
   nc<-.jcall(s, "I", "getColumnsCount")
   m<-array(0, c(nr, nc))

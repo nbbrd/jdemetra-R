@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<informationSet xmlns="ec/tss.core">
+    <item name="algorithm">
+        <method version="0.1.0.0">
+            <name>tramoseats</name>
+            <family>Seasonal adjustment</family>
+        </method>
+    </item>
+    <item name="tramo">
+        <subset>
+            <item name="algorithm">
+                <method version="0.1.0.0">
+                    <name>tramo</name>
+                    <family>Modelling</family>
+                </method>
+            </item>
+            <item name="transform">
+                <subset>
+                    <item name="function">
+                        <string>Auto</string>
+                    </item>
+                </subset>
+            </item>
+            <item name="arima">
+                <subset>
+                    <item name="theta">
+                        <params>
+                            <coef/>
+                        </params>
+                    </item>
+                    <item name="btheta">
+                        <params>
+                            <coef/>
+                        </params>
+                    </item>
+                </subset>
+            </item>
+            <item name="automdl">
+                <subset>
+                    <item name="enabled">
+                        <boolean>true</boolean>
+                    </item>
+                </subset>
+            </item>
+            <item name="outlier">
+                <subset>
+                    <item name="types">
+                        <strings>
+                            <items>AO TC LS</items>
+                        </strings>
+                    </item>
+                </subset>
+            </item>
+            <item name="regression">
+                <subset>
+                    <item name="calendar">
+                        <subset>
+                            <item name="td">
+                                <subset>
+                                    <item name="mauto">
+                                        <string>WaldTest</string>
+                                    </item>
+                                    <item name="option">
+                                        <string>TradingDays</string>
+                                    </item>
+                                    <item name="leapyear">
+                                        <boolean>true</boolean>
+                                    </item>
+                                    <item name="testtype">
+                                        <string>Separate_T</string>
+                                    </item>
+                                </subset>
+                            </item>
+                            <item name="easter">
+                                <subset>
+                                    <item name="type">
+                                        <string>IncludeEaster</string>
+                                    </item>
+                                    <item name="test">
+                                        <boolean>true</boolean>
+                                    </item>
+                                </subset>
+                            </item>
+                        </subset>
+                    </item>
+                </subset>
+            </item>
+        </subset>
+    </item>
+    <item name="seats">
+        <subset>
+            <item name="xl">
+                <double>1.0</double>
+            </item>
+            <item name="method">
+                <string>KalmanSmoother</string>
+            </item>
+        </subset>
+    </item>
+    <item name="benchmarking">
+        <subset/>
+    </item>
+</informationSet>

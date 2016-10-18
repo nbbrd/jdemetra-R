@@ -6,9 +6,11 @@ period_r2jd<-function(s){
 }
 
 period_jd2r<-function(jd_p){
-	jd_freq<-.jcall(jd_p, "Lec/tstoolkit/timeseries/simplets/TsFrequency;", "getFrequency")
+  if (is.null(jd_p))
+    return (NULL)
+  jd_freq<-.jcall(jd_p, "Lec/tstoolkit/timeseries/simplets/TsFrequency;", "getFrequency")
 	frequency<-.jcall(jd_freq, "I", "intValue")
-	year<-.jcall(jd_p, "I", "getYear")
+year<-.jcall(jd_p, "I", "getYear")
 	position<-.jcall(jd_p, "I", "getPosition")
 	c(frequency, year, position+1)
 }
@@ -20,6 +22,8 @@ domain_r2jd<-function(s){
 }
 
 domain_jd2r<-function(jd_d){
+  if (is.null(jd_d))
+    return (NULL)
   jd_start<-.jcall(jd_d, "Lec/tstoolkit/timeseries/simplets/TsPeriod;", "getStart")
   jd_freq<-.jcall(jd_start, "Lec/tstoolkit/timeseries/simplets/TsFrequency;", "getFrequency")
   frequency<-.jcall(jd_freq, "I", "intValue")
@@ -42,7 +46,10 @@ ts_r2jd<-function(s){
 }
 
 ts_jd2r<-function(s){
-	jd_start<-.jcall(s, "Lec/tstoolkit/timeseries/simplets/TsPeriod;", "getStart")
+  if (is.null(s)){
+    return (NULL)
+  }
+  jd_start<-.jcall(s, "Lec/tstoolkit/timeseries/simplets/TsPeriod;", "getStart")
 	pstart<-period_jd2r(jd_start)
 	len<-.jcall(s, "I", "getLength")
 	x<-numeric(length=len)

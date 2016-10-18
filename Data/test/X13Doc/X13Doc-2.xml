@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<informationSet xmlns="ec/tss.core">
+    <item name="metadata">
+        <subset>
+            <item name="@timestamp">
+                <string>Mon Oct 17 11:46:51 CEST 2016</string>
+            </item>
+        </subset>
+    </item>
+    <item name="algorithm">
+        <method version="0.1.0.0">
+            <name>x13</name>
+            <family>Seasonal adjustment</family>
+        </method>
+    </item>
+    <item name="input">
+        <subset>
+            <item name="series">
+                <ts name="Turnover - Communications">
+                    <freq>12</freq>
+                    <firstYear>1980</firstYear>
+                    <firstPeriod>1</firstPeriod>
+                    <data>3990.5 3674.8 3785.4 3839.1 3771.5 3817.2 3345.4 3685.3 3498.6 3904.5 3973.8 3954.9 3756.1 4520.9 4027.3 3793.7 4412.2 3965.9 4186.6 3818.2 3278.0 3886.1 3930.6 4029.3 4054.0 3886.7 3903.9 4776.5 4343.9 4413.5 4276.5 4152.4 4041.7 4344.2 4444.3 4396.7 4431.6 5054.8 3880.7 4824.0 4600.0 4794.5 4231.3 5155.6 3712.4 5155.9 4625.1 4935.9 4829.2 5161.4 4396.1 5806.2 6920.9 5177.4 5260.0 4835.4 4719.9 5309.7 5132.1 3254.2 5709.7 5206.3 7977.0 6433.5 5502.0 5681.9 5671.2 5544.6 5550.5 5762.0 5278.8 4387.8 5975.9 5356.2 6807.3 6231.4 5472.9 5930.5 7735.1 3494.3 8054.0 7182.8 5989.1 6039.0 6244.0 6069.4 7014.6 6363.5 4895.4 6063.0 6649.9 8854.6 6562.7 6939.9 6565.6 4019.1 6955.0 8774.1 7100.8 7236.4 6975.8 6555.8 7230.8 6454.2 4509.4 6493.6 10141.6 8177.3 7820.1 6136.9 8678.4 7085.5 8046.1 7109.8 5381.9 10197.7 4532.7 10023.0 7372.1 5268.3 7651.0 4351.6 6469.0 8550.9 11140.3 10548.8 9820.8 7637.4 8045.9 5079.3 8505.2 8031.5 8274.4 8023.4 8792.4 11360.9 8879.2 8567.6 9339.8 7720.4 9581.9 8244.8 6721.1 7990.9 8946.7 10497.0 10109.2 5060.9 7477.8 9004.8 9391.1 12359.8 8962.9 8682.8 9587.2 7383.3 9791.3 4948.4 14069.0 9199.3 9774.2 6479.3 10164.2 13205.8 6310.7 9533.1 12883.2 10374.3 2970.3 5958.4 15376.8 9151.4 10370.7 9842.4 10952.2 8949.1 11106.4 13239.9 9903.3 11564.6 10800.5 8332.6 12528.7 9892.7 11788.0 10434.5 12682.9 10364.2 11805.2 11903.1 12775.9 14101.0 3743.6 9778.6 12571.5 11468.5 12197.6 10270.8 12854.0 12572.3 12803.8 13328.1 13909.4 21080.4 13726.3 13348.3 14313.9 13832.7 14114.7 14914.2 14451.3 13880.3 15062.2 15152.6 15555.8 19806.6 15273.0 16213.1 14411.9 14409.0 17899.7 12683.9 16455.9 16541.0 18176.0 17374.2 16645.4 22382.7 15546.0 15499.3 18901.3 19408.3 19195.6 21181.6 24343.7 18781.3 22795.8 21796.1 21256.2 22806.1 21391.2 21886.1 24300.9 19777.0 25255.2 23546.7 24612.6 23293.4 24644.8 22510.3 26852.5 30194.7 24910.6 24286.3 25563.5 31412.0 26751.6 27042.4 27520.4 24936.2 29049.3 31041.8 30519.0 28994.0</data>
+                    <metaData>
+                        <property name="@timestamp" value="Wed Dec 10 09:29:15 CET 2014"/>
+                        <property name="@source" value="Xml"/>
+                        <property name="@id" value="demetra://tsprovider/Xml/20111201/SERIES?file=VAT.xml#collectionIndex=0&amp;seriesIndex=122"/>
+                    </metaData>
+                </ts>
+            </item>
+        </subset>
+    </item>
+    <item name="specification">
+        <subset>
+            <item name="algorithm">
+                <method version="0.1.0.0">
+                    <name>x13</name>
+                    <family>Seasonal adjustment</family>
+                </method>
+            </item>
+            <item name="regarima">
+                <subset>
+                    <item name="algorithm">
+                        <method version="0.1.0.0">
+                            <name>regarima</name>
+                            <family>Modelling</family>
+                        </method>
+                    </item>
+                    <item name="basic">
+                        <subset>
+                            <item name="preprocess">
+                                <boolean>false</boolean>
+                            </item>
+                        </subset>
+                    </item>
+                </subset>
+            </item>
+            <item name="x11">
+                <subset>
+                    <item name="mode">
+                        <string>Multiplicative</string>
+                    </item>
+                    <item name="fcasts">
+                        <integer>0</integer>
+                    </item>
+                </subset>
+            </item>
+            <item name="benchmarking">
+                <subset/>
+            </item>
+        </subset>
+    </item>
+</informationSet>

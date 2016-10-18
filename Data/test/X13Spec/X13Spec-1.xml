@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<informationSet xmlns="ec/tss.core">
+    <item name="algorithm">
+        <method version="0.1.0.0">
+            <name>x13</name>
+            <family>Seasonal adjustment</family>
+        </method>
+    </item>
+    <item name="regarima">
+        <subset>
+            <item name="algorithm">
+                <method version="0.1.0.0">
+                    <name>regarima</name>
+                    <family>Modelling</family>
+                </method>
+            </item>
+            <item name="transform">
+                <subset>
+                    <item name="function">
+                        <string>Auto</string>
+                    </item>
+                </subset>
+            </item>
+            <item name="arima">
+                <subset>
+                    <item name="theta">
+                        <params>
+                            <coef/>
+                        </params>
+                    </item>
+                    <item name="btheta">
+                        <params>
+                            <coef/>
+                        </params>
+                    </item>
+                </subset>
+            </item>
+            <item name="automdl">
+                <subset>
+                    <item name="enabled">
+                        <boolean>true</boolean>
+                    </item>
+                </subset>
+            </item>
+            <item name="outlier">
+                <subset>
+                    <item name="ao">
+                        <double>0.0</double>
+                    </item>
+                    <item name="ls">
+                        <double>0.0</double>
+                    </item>
+                    <item name="tc">
+                        <double>0.0</double>
+                    </item>
+                </subset>
+            </item>
+            <item name="regression">
+                <subset>
+                    <item name="tradingdays">
+                        <subset>
+                            <item name="user">
+                                <strings>
+                                    <items>Calendars.Mon Calendars.Tue Calendars.Wed Calendars.Thu Calendars.Fri Calendars.Sat Calendars.LP</items>
+                                </strings>
+                            </item>
+                            <item name="test">
+                                <string>Remove</string>
+                            </item>
+                        </subset>
+                    </item>
+                    <item name="mh1">
+                        <subset>
+                            <item name="type">
+                                <string>Easter</string>
+                            </item>
+                            <item name="param">
+                                <integer>8</integer>
+                            </item>
+                            <item name="test">
+                                <string>Add</string>
+                            </item>
+                        </subset>
+                    </item>
+                </subset>
+            </item>
+        </subset>
+    </item>
+    <item name="x11">
+        <subset/>
+    </item>
+    <item name="benchmarking">
+        <subset/>
+    </item>
+</informationSet>

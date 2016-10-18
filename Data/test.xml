@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:demetraGenericWorkspace name="test" xmlns="ec/tss.core" xmlns:ns2="ec/tss.demetra">
+    <ns2:items>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@specifications@tramoseats</ns2:family>
+            <ns2:name>RSAfull_ks</ns2:name>
+            <ns2:file>TramoSeatsSpec-1</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Utilities@Variables</ns2:family>
+            <ns2:name>Calendars</ns2:name>
+            <ns2:file>Vars-1</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@multi-documents</ns2:family>
+            <ns2:name>TramoSeats_1</ns2:name>
+            <ns2:file>SAProcessing-1</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@multi-documents</ns2:family>
+            <ns2:name>TramoSeats_td</ns2:name>
+            <ns2:file>SAProcessing-2</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@specifications@tramoseats</ns2:family>
+            <ns2:name>RSA_hol</ns2:name>
+            <ns2:file>TramoSeatsSpec-2</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@multi-documents</ns2:family>
+            <ns2:name>TramoSeats_hol</ns2:name>
+            <ns2:file>SAProcessing-3</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@specifications@tramoseats</ns2:family>
+            <ns2:name>RSA_td</ns2:name>
+            <ns2:file>TramoSeatsSpec-3</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@specifications@x13</ns2:family>
+            <ns2:name>RSA_td</ns2:name>
+            <ns2:file>X13Spec-1</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@specifications@x13</ns2:family>
+            <ns2:name>RSA_hol</ns2:name>
+            <ns2:file>X13Spec-2</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@multi-documents</ns2:family>
+            <ns2:name>X13_1</ns2:name>
+            <ns2:file>SAProcessing-4</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@multi-documents</ns2:family>
+            <ns2:name>X13_td</ns2:name>
+            <ns2:file>SAProcessing-5</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@multi-documents</ns2:family>
+            <ns2:name>X13_hol</ns2:name>
+            <ns2:file>SAProcessing-6</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@documents@x13</ns2:family>
+            <ns2:name>X13Doc-1</ns2:name>
+            <ns2:file>X13Doc-1</ns2:file>
+        </ns2:item>
+        <ns2:item readOnly="false">
+            <ns2:family>Seasonal adjustment@documents@x13</ns2:family>
+            <ns2:name>X13Doc-2</ns2:name>
+            <ns2:file>X13Doc-2</ns2:file>
+        </ns2:item>
+    </ns2:items>
+</ns2:demetraGenericWorkspace>
