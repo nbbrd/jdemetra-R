@@ -50,6 +50,8 @@ jd_calendarData<-function(jcal, dom, type="td"){
   jdom=domain_r2jd(dom)
   if (.jinstanceof(jcal, "ec/tstoolkit/timeseries/calendars/NationalCalendarProvider"))
     cprovider=jcal
+  else if (.jinstanceof(jcal, "ec/tstoolkit/timeseries/calendars/DefaultGregorianCalendarProvider"))
+    cprovider=jcal
   else
     cprovider<-.jnew("ec/tstoolkit/timeseries/calendars/NationalCalendarProvider", jcal)
   if (type == "td")

@@ -33,7 +33,6 @@ proc_ts(r, "sa")
 
 spec<-spec_create()
 spec_str(spec,"tramo.regression.calendar.td.holidays" ,"mycalendar")
-spec_str(spec,"tramo.regression.calendar.td.holidays" ,"mycalendar")
 rh<-sa_tramoseats(s, "RSAfull", spec)
 proc_ts(rh, "sa")
 

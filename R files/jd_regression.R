@@ -24,3 +24,12 @@ jd_data<-function(jd_var, jd_dom){
   .jcall("ec/tstoolkit/timeseries/regression/RegressionUtilities", "Lec/tstoolkit/maths/matrices/Matrix;",
          "matrix", .jcast(jd_var, "ec/tstoolkit/timeseries/regression/ITsVariable"), jd_dom)
 }
+
+jd_regressionData<-function(regname, dom){
+  jdom=domain_r2jd(dom)
+  jd_var<-jd_getvariable(regname)
+  jd_m<-jd_data(jd_var, jdom)
+  data<-matrix_jd2r(jd_m)
+  ts(data,start=dom[2:3], frequency=dom[1])
+}
+
