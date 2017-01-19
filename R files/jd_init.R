@@ -78,3 +78,5 @@ matrix_r2jd<-function(m){
   }
   jd_m
 }
+
+
