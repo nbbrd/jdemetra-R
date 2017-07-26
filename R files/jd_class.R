@@ -1,8 +1,8 @@
-source("./jd_init.R")
-source("./jd_ts.R")
-source("./jd_sa.R")
-source("./jd_rslts.R")
-source("./jd_spec.R")
+source("./R files/jd_init.R")
+source("./R files/jd_ts.R")
+source("./R files/jd_sa.R")
+source("./R files/jd_rslts.R")
+source("./R files/jd_spec.R")
 
 #initialize SA classes (S4)
 

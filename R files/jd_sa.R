@@ -1,4 +1,4 @@
-source("./jd_ts.R")
+source("./R files/jd_ts.R")
 
 jd_tramoseats<-.jnew("ec/satoolkit/algorithm/implementation/TramoSeatsProcessingFactory")
 jd_x13<-.jnew("ec/satoolkit/algorithm/implementation/X13ProcessingFactory")

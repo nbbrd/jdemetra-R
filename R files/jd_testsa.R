@@ -1,15 +1,15 @@
-source("./jd_init.R")
-source("./jd_ts.R")
-source("./jd_calendars.R")
-source("./jd_regression.R")
-source("./jd_sa.R")
-source("./jd_sa_advanced.R")
-source("./jd_rslts.R")
-source("./jd_spec.R")
-source("./jd_cholette.R")
+source("./R files/jd_init.R")
+source("./R files/jd_ts.R")
+source("./R files/jd_calendars.R")
+source("./R files/jd_regression.R")
+source("./R files/jd_sa.R")
+source("./R files/jd_sa_advanced.R")
+source("./R files/jd_rslts.R")
+source("./R files/jd_spec.R")
+source("./R files/jd_cholette.R")
 
 # usual R time series
-data<-read.table("../Data/xm.txt")
+data<-read.table("./Data/xm.txt")
 s<-ts(data[,1], start=c(1995,1), frequency=12)
 
 # results will be retrieved from the output of the sa routines

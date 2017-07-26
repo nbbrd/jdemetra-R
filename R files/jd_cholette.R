@@ -1,4 +1,4 @@
-source("./jd_ts.R")
+source("./R files/jd_ts.R")
 
 
 jd_cholette<-function(s, t, rho=1, lambda=1, conversion="Average"){
