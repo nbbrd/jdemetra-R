@@ -1,3 +1,6 @@
+if(!require(rJava)){
+  install.packages("rJava")
+}
 library("rJava")
 .jinit()
 .jaddClassPath("./Java/demetra-tstoolkit-2.1.0.jar")
