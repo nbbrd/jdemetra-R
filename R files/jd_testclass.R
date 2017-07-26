@@ -1,4 +1,4 @@
-source("./jd_class.R")
+source("./R files/jd_class.R")
 
 # usual R time series
 data<-read.table("../Data/xm.txt")
