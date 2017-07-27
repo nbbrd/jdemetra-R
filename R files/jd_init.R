@@ -1,6 +1,9 @@
+if(!require(rJava)){
+  install.packages("rJava")
+}
 library("rJava")
 .jinit()
-.jaddClassPath("../java/demetra-tstoolkit-2.1.0.jar")
+.jaddClassPath("./Java/demetra-tstoolkit-2.1.0.jar")
 jd_month<-.jfield("ec/tstoolkit/timeseries/simplets/TsFrequency","Lec/tstoolkit/timeseries/simplets/TsFrequency;","Monthly")
 jd_quarter<-.jfield("ec/tstoolkit/timeseries/simplets/TsFrequency","Lec/tstoolkit/timeseries/simplets/TsFrequency;","Quarterly")
 jd_year<-.jfield("ec/tstoolkit/timeseries/simplets/TsFrequency","Lec/tstoolkit/timeseries/simplets/TsFrequency;","Yearly")

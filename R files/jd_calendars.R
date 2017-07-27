@@ -1,4 +1,4 @@
-source("./jd_regression.R")
+source("./R files/jd_regression.R")
 
 jd_BEG<-.jfield("ec/tstoolkit/timeseries/Day", "Lec/tstoolkit/timeseries/Day;", "BEG")
 jd_END<-.jfield("ec/tstoolkit/timeseries/Day", "Lec/tstoolkit/timeseries/Day;", "END")

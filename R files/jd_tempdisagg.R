@@ -1,5 +1,5 @@
-source("./jd_ts.R")
-source("./jd_regression.R")
+source("./R files/jd_ts.R")
+source("./R files/jd_regression.R")
 jd_td<-function(formula, model="Ar1", conversion="Sum", zeroinit=FALSE, truncated.rho=0, fixed.rho=-1, to=4){
   # This function reuse part of the code of the function "td", from the package "tempdisagg" 
   # Christoph Sax, Peter Steiner (http://journal.r-project.org/archive/2013-2/sax-steiner.pdf)

@@ -1,8 +1,8 @@
-source("./jd_init.R")
-source("./jd_ts.R")
-source("./jd_regression.R")
-source("./jd_calendars.R")
-source("./jd_sa.R")
+source("./R files/jd_init.R")
+source("./R files/jd_ts.R")
+source("./R files/jd_regression.R")
+source("./R files/jd_calendars.R")
+source("./R files/jd_sa.R")
 
 #calendar
 jdc<-jd_calendar()

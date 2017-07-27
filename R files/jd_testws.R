@@ -1,7 +1,7 @@
-source("./jd_init.R")
-source("./jd_ts.R")
-source("./jd_rslts.R")
-source("./jd_ws.R")
+source("./R files/jd_init.R")
+source("./R files/jd_ts.R")
+source("./R files/jd_rslts.R")
+source("./R files/jd_ws.R")
 
 # reads a workspace of JD+
 ws<-jd_ws(file = "../Data/test.xml")

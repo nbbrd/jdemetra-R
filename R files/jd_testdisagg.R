@@ -1,8 +1,8 @@
-source("./jd_init.R")
-source("./jd_ts.R")
-source("./jd_regression.R")
-source("./jd_tempdisagg.R")
-source("./jd_cholette.R")
+source("./R files/jd_init.R")
+source("./R files/jd_ts.R")
+source("./R files/jd_regression.R")
+source("./R files/jd_tempdisagg.R")
+source("./R files/jd_cholette.R")
 library("tempdisagg")
 
 # usual R time series
