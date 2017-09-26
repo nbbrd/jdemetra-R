@@ -6,9 +6,10 @@ source("./R files/jd_cholette.R")
 library("tempdisagg")
 
 # usual R time series
-data<-read.table("../Data/xm.txt")
+data<-read.table("./Data/xm.txt")
 s1<-ts(data[,1], start=c(1995,1), frequency=12)
 s2<-ts(data[,2], start=c(1995,1), frequency=12)
+s3<-ts(data[,3], start=c(1995,1), frequency=12)
 sy<-ts_aggregate(s1,1)
 
 cl1<-td(sy~s2)

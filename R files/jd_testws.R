@@ -4,7 +4,7 @@ source("./R files/jd_rslts.R")
 source("./R files/jd_ws.R")
 
 # reads a workspace of JD+
-ws<-jd_ws(file = "../Data/test.xml")
+ws<-jd_ws(file = "./Data/test.xml")
 
 # gets the multi-processing names
 jd_processingNames(ws)

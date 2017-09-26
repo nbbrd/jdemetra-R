@@ -15,6 +15,12 @@ jd_registerVariable<-function(s, name, group="vars"){
   
 }
 
+jd_unregisterVariable<- function(name, group){
+  jd_context<-.jcall("ec/tstoolkit/algorithm/ProcessingContext", "Lec/tstoolkit/algorithm/ProcessingContext;", "getActiveContext")
+  jd_vars<-.jcall(jd_context, "Lec/tstoolkit/timeseries/regression/TsVariables;", "getTsVariables", group)
+  .jcall(jd_vars, "Z", "remove", name)
+}
+
 jd_getvariable<-function(name){
   jd_context<-.jcall("ec/tstoolkit/algorithm/ProcessingContext", "Lec/tstoolkit/algorithm/ProcessingContext;", "getActiveContext")
   .jcall(jd_context, "Lec/tstoolkit/timeseries/regression/ITsVariable;", "getTsVariable", name)

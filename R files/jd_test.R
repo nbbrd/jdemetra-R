@@ -8,7 +8,7 @@ source("./R files/jd_spec.R")
 source("./R files/jd_cholette.R")
 
 # usual R time series
-data<-read.table("../Data/xm.txt")
+data<-read.table("./Data/xm.txt")
 s<-ts(data[,1], start=c(1995,1), frequency=12)
 
 # results will be retrieved from the output of the sa routines

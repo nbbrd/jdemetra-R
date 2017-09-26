@@ -21,14 +21,17 @@ jd_td<-function(formula, model="Ar1", conversion="Sum", zeroinit=FALSE, truncate
     stop("y must be a time series")
   }
   # 2. is there a X? 
-  if (length(X.series.names) > 0) {
+  if (length(X.series.names) > 0){
       hasX=TRUE
-      if (!is.ts(get(X.series.names[1], envir=environment(X.formula)))){
-        stop("x must be a time series")
+      for (n in X.series.names){
+        if (!is.ts(get(n, envir=environment(X.formula)))){
+          stop("x must be a time series")
+        }
       }
   }else{
     hasX=FALSE
   }
+
   monitor<-.jnew("ec.benchmarking.simplets.TsDisaggregation2")
   jm<-.jcall("ec/benchmarking/simplets/TsDisaggregation2$Model", "Lec/benchmarking/simplets/TsDisaggregation2$Model;", "valueOf",model)
   jc<-.jcall("ec/tstoolkit/timeseries/TsAggregationType", "Lec/tstoolkit/timeseries/TsAggregationType;", "valueOf", conversion)
@@ -45,9 +48,11 @@ jd_td<-function(formula, model="Ar1", conversion="Sum", zeroinit=FALSE, truncate
   }
   vars<-.jnew("ec.tstoolkit.timeseries.regression.TsVariableList");
   if (hasX){
-      xvar<-jd_tsvar(get(X.series.names[1], envir=environment(X.formula)), X.series.names[1])
+    for (n in X.series.names){
+      xvar<-jd_tsvar(get(n, envir=environment(X.formula)), n)
       .jcall(vars, "V", "add", .jcast(xvar, "ec/tstoolkit/timeseries/regression/ITsVariable"))
       .jcall(monitor, "Z", "process", jd_y, vars)
+    }
   }else{
     jd_freq<-.jcall("ec/tstoolkit/timeseries/simplets/TsFrequency", "Lec/tstoolkit/timeseries/simplets/TsFrequency;", "valueOf", as.integer(to))
     .jcall(monitor, "V", "setDefaultFrequency", jd_freq)
