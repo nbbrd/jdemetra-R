@@ -73,3 +73,28 @@ spec_update<-function(spec, details){
   }
   
 }
+
+spec_span<-function(spec, name, type="all", date0=NULL, date1=NULL, n0=0, n1=0){
+  names<-.jcall("ec/tstoolkit/information/InformationSet", "[S", "split", name)
+  jspan<-.jnew("ec/tstoolkit/timeseries/TsPeriodSelector")
+  if (type == "last"){
+    .jcall(jspan, "V", "last", as.integer(n1))
+  }
+  else if (type == "first"){
+    .jcall(jspan, "V", "first", as.integer(n0))
+  }else if (type == "from"){
+    jday<-.jcall("ec.tstoolkit.timeseries.Day", "Lec/tstoolkit/timeseries/Day;", "fromString", date0)
+    .jcall(jspan, "V", "from", jday)
+  }else if (type == "to"){
+    jday<-.jcall("ec.tstoolkit.timeseries.Day", "Lec/tstoolkit/timeseries/Day;", "fromString", date1)
+    .jcall(jspan, "V", "to", jday)
+  }else if (type == "between"){
+    jday0<-.jcall("ec.tstoolkit.timeseries.Day", "Lec/tstoolkit/timeseries/Day;", "fromString", date0)
+    jday1<-.jcall("ec.tstoolkit.timeseries.Day", "Lec/tstoolkit/timeseries/Day;", "fromString", date1)
+    .jcall(jspan, "V", "between", jday0, jday1)
+  }else if (type == "excluding"){
+    .jcall(jspan, "V", "excluding", as.integer(n0), as.integer(n1))
+  }
+  .jcall(spec, "Z", "set", names, .jcast(jspan, "java/lang/Object"))
+}
+
