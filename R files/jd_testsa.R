@@ -29,6 +29,7 @@ spec_fixedparams(spec, "tramo.arima.btheta", -.8)
 spec_nparams(spec, "tramo.arima.phi", 2)
 spec_bool(spec, "tramo.regression.calendar.td.auto", TRUE)
 spec_strs(spec, "tramo.regression.outliers", c("LS.2005-12-01.f"))
+spec_span(spec, "tramo.transform.span", "between", date0="2000-01-01", date1="2008-01-01")
 
 # execute TramoSeats on the series s, using the "RSA4" specification modified by the given spec details (see above)
 tramoseats_rslts2=sa_tramoseats(s,"RSA4",spec)
