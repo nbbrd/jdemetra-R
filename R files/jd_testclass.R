@@ -1,7 +1,7 @@
 source("./R files/jd_class.R")
 
 # usual R time series
-data<-read.table("../Data/xm.txt")
+data<-read.table("./Data/xm.txt")
 s<-ts(data[,1], start=c(1995,1), frequency=12)
 
 rx13<-x13Process(s)

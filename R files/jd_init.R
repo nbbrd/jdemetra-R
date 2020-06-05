@@ -3,7 +3,7 @@ if(!require(rJava)){
 }
 library("rJava")
 .jinit()
-.jaddClassPath("./Java/demetra-tstoolkit-2.1.0.jar")
+.jaddClassPath("./Java/demetra-tstoolkit-2.2.3-RC2.jar")
 jd_month<-.jfield("ec/tstoolkit/timeseries/simplets/TsFrequency","Lec/tstoolkit/timeseries/simplets/TsFrequency;","Monthly")
 jd_quarter<-.jfield("ec/tstoolkit/timeseries/simplets/TsFrequency","Lec/tstoolkit/timeseries/simplets/TsFrequency;","Quarterly")
 jd_year<-.jfield("ec/tstoolkit/timeseries/simplets/TsFrequency","Lec/tstoolkit/timeseries/simplets/TsFrequency;","Yearly")

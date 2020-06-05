@@ -64,8 +64,7 @@ proc_outliers<-function(preprocessing, all=TRUE, fixed=TRUE){
     for (i in 1:nout){
       jcur<-.jcast(.jcall(jout, "Ljava/lang/Object;", "get", as.integer(i-1)), "ec/tstoolkit/timeseries/regression/IOutlierVariable")
       code<-.jcall(.jcall(jcur, "Lec/tstoolkit/timeseries/regression/OutlierType;", "getOutlierType"), "S", "toString")
-      jperiod<-.jcall(jcur, "Lec/tstoolkit/timeseries/simplets/TsPeriod;", "getPosition")
-      jday<-.jcall(jperiod, "Lec/tstoolkit/timeseries/Day;", "firstday")
+      jday<-.jcall(jcur, "Lec/tstoolkit/timeseries/Day;", "getPosition")
       if (fixed){
         code<-paste(code,.jcall(jday, "S", "toString"), 'f', sep='.')
       }else{
@@ -79,8 +78,7 @@ proc_outliers<-function(preprocessing, all=TRUE, fixed=TRUE){
     for (i in 1:npout){
       jcur<-.jcast(.jcall(jpout, "Ljava/lang/Object;", "get", as.integer(i-1)), "ec/tstoolkit/timeseries/regression/IOutlierVariable")
       code<-.jcall(.jcall(jcur, "Lec/tstoolkit/timeseries/regression/OutlierType;", "getOutlierType"), "S", "toString")
-      jperiod<-.jcall(jcur, "Lec/tstoolkit/timeseries/simplets/TsPeriod;", "getPosition")
-      jday<-.jcall(jperiod, "Lec/tstoolkit/timeseries/Day;", "firstday")
+      jday<-.jcall(jcur, "Lec/tstoolkit/timeseries/Day;", "getPosition")
       code<-paste(code,.jcall(jday, "S", "toString"), 'f', sep='.')
       outs[idx]<-code
       idx=idx+1

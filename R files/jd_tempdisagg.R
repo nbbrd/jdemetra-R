@@ -36,7 +36,7 @@ jd_td<-function(formula, model="Ar1", conversion="Sum", zeroinit=FALSE, truncate
   jm<-.jcall("ec/benchmarking/simplets/TsDisaggregation2$Model", "Lec/benchmarking/simplets/TsDisaggregation2$Model;", "valueOf",model)
   jc<-.jcall("ec/tstoolkit/timeseries/TsAggregationType", "Lec/tstoolkit/timeseries/TsAggregationType;", "valueOf", conversion)
   .jcall(monitor, "V", "setConstant", as.logical(attr(terms(formula), "intercept")))
-  .jcall(monitor, "V", "setPrecision", as.double(1e-9))
+  .jcall(monitor, "V", "setEpsilon", as.double(1e-9))
   .jcall(monitor, "V", "setModel", jm)
   .jcall(monitor, "V", "setType", jc)
   .jcall(monitor, "V", "setTruncatedRho", as.double(truncated.rho))
