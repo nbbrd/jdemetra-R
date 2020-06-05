@@ -25,7 +25,7 @@ jdc2<-jd_getcalendar("mycalendar")
 jd_calendarData(jdc2, c(4,1980,1, 28*4), "wd")
 
 # usual R time series
-data<-read.table("../Data/xm.txt")
+data<-read.table("./Data/xm.txt")
 s<-ts(data[,1], start=c(1995,1), frequency=12)
 
 r<-sa_tramoseats(s, "RSAfull")

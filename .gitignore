@@ -2,3 +2,5 @@
 /R files/.RData
 /R files/.Rhistory
 .Rproj.user
+/.RData
+/.Rhistory
